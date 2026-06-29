@@ -1,0 +1,437 @@
+<style>
+  .fd-error-card {
+    --fd-error-main: #77408C;
+    --fd-error-light: #EDE0F3;
+    --fd-error-white: #ffffff;
+    --fd-error-text: #24182B;
+    --fd-error-muted: #706177;
+    --fd-error-border: rgba(119, 64, 140, 0.18);
+    --fd-error-shadow: 0 16px 36px rgba(69, 35, 84, 0.16);
+
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 757px;
+    height: 600px;
+    margin: 28px auto;
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    color: var(--fd-error-text);
+  }
+
+  .fd-error-card *,
+  .fd-error-card *::before,
+  .fd-error-card *::after {
+    box-sizing: border-box;
+  }
+
+  .fd-error-card__inner {
+    height: 100%;
+    overflow: hidden;
+    border-radius: 26px;
+    background: linear-gradient(135deg, #EDE0F3 0%, #FAF5FC 100%);
+    border: 1px solid rgba(119, 64, 140, 0.14);
+    box-shadow: var(--fd-error-shadow);
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .fd-error-card__header {
+    flex: 0 0 auto;
+  }
+
+  .fd-error-card__label {
+    display: inline-flex;
+    margin-bottom: 8px;
+    padding: 5px 11px;
+    border-radius: 999px;
+    background: rgba(119, 64, 140, 0.1);
+    color: var(--fd-error-main);
+    font-size: 12px;
+    line-height: 1.2;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .fd-error-card__title {
+    margin: 0;
+    color: var(--fd-error-main);
+    font-size: 31px;
+    line-height: 1.12;
+    font-weight: 850;
+    letter-spacing: -0.03em;
+  }
+
+  .fd-error-card__subtitle {
+    margin: 8px 0 0;
+    color: var(--fd-error-muted);
+    font-size: 16px;
+    line-height: 1.38;
+  }
+
+  .fd-error-card__control {
+    flex: 0 0 auto;
+    padding: 14px;
+    border-radius: 18px;
+    background: var(--fd-error-white);
+    border: 1px solid var(--fd-error-border);
+  }
+
+  .fd-error-card__select-label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--fd-error-main);
+    font-size: 15px;
+    line-height: 1.2;
+    font-weight: 800;
+  }
+
+  .fd-error-card__select {
+    width: 100%;
+    min-height: 46px;
+    padding: 10px 42px 10px 14px;
+    border: 1px solid rgba(119, 64, 140, 0.32);
+    border-radius: 14px;
+    background-color: #FBF8FD;
+    color: var(--fd-error-text);
+    font: inherit;
+    font-size: 16px;
+    line-height: 1.3;
+    cursor: pointer;
+    outline: none;
+  }
+
+  .fd-error-card__select:focus {
+    border-color: var(--fd-error-main);
+    box-shadow: 0 0 0 4px rgba(119, 64, 140, 0.16);
+  }
+
+  .fd-error-card__grid {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .fd-error-card__field {
+    min-height: 0;
+    padding: 16px;
+    border-radius: 18px;
+    background: var(--fd-error-white);
+    border: 1px solid var(--fd-error-border);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .fd-error-card__field--wide {
+    grid-column: 1 / -1;
+  }
+
+  .fd-error-card__field-title {
+    flex: 0 0 auto;
+    margin: 0 0 8px;
+    color: var(--fd-error-main);
+    font-size: 16px;
+    line-height: 1.25;
+    font-weight: 850;
+  }
+
+  .fd-error-card__field-text {
+    flex: 1 1 auto;
+    min-height: 0;
+    margin: 0;
+    padding-right: 8px;
+    overflow-y: auto;
+    color: var(--fd-error-text);
+    font-size: 16px;
+    line-height: 1.45;
+  }
+
+  .fd-error-card__field-text.is-placeholder {
+    color: var(--fd-error-muted);
+  }
+
+  .fd-error-card__field-text::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  .fd-error-card__field-text::-webkit-scrollbar-track {
+    background: rgba(119, 64, 140, 0.08);
+    border-radius: 999px;
+  }
+
+  .fd-error-card__field-text::-webkit-scrollbar-thumb {
+    background: rgba(119, 64, 140, 0.45);
+    border-radius: 999px;
+  }
+
+  @media (max-width: 640px) {
+    .fd-error-card {
+      max-width: 100%;
+      height: 600px;
+      margin: 22px 0;
+    }
+
+    .fd-error-card__inner {
+      padding: 16px;
+      border-radius: 22px;
+      gap: 12px;
+    }
+
+    .fd-error-card__title {
+      font-size: 24px;
+    }
+
+    .fd-error-card__subtitle {
+      font-size: 14px;
+    }
+
+    .fd-error-card__control {
+      padding: 12px;
+    }
+
+    .fd-error-card__select {
+      font-size: 15px;
+    }
+
+    .fd-error-card__grid {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .fd-error-card__field--wide {
+      grid-column: auto;
+    }
+
+    .fd-error-card__field {
+      padding: 13px;
+      border-radius: 16px;
+    }
+
+    .fd-error-card__field-title {
+      font-size: 15px;
+    }
+
+    .fd-error-card__field-text {
+      font-size: 15px;
+    }
+  }
+</style>
+
+<section class="fd-error-card" data-fd-error-card>
+  <div class="fd-error-card__inner">
+    <div class="fd-error-card__header">
+      <div class="fd-error-card__label">Интерактивная карточка</div>
+      <h2 class="fd-error-card__title">Как исправить ошибку маркировки</h2>
+      <p class="fd-error-card__subtitle">
+        Выберите ошибку из списка — карточка покажет возможные причины, способ выявления и порядок исправления.
+      </p>
+    </div>
+
+    <div class="fd-error-card__control">
+      <label class="fd-error-card__select-label">
+        Ошибка маркировки
+        <select class="fd-error-card__select" data-fd-error-select>
+          <option value="">Выберите ошибку</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="fd-error-card__grid" aria-live="polite">
+      <div class="fd-error-card__field">
+        <h3 class="fd-error-card__field-title">Возможные причины</h3>
+        <p class="fd-error-card__field-text is-placeholder" data-fd-error-reasons>
+          Здесь будут возможные причины ошибки.
+        </p>
+      </div>
+
+      <div class="fd-error-card__field">
+        <h3 class="fd-error-card__field-title">Как выявляется</h3>
+        <p class="fd-error-card__field-text is-placeholder" data-fd-error-detection>
+          Здесь вы увидите, как выявляют расхождение.
+        </p>
+      </div>
+
+      <div class="fd-error-card__field fd-error-card__field--wide">
+        <h3 class="fd-error-card__field-title">Как исправить</h3>
+        <p class="fd-error-card__field-text is-placeholder" data-fd-error-correction>
+          Здесь мы расскажем, как исправить ошибку.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    const fdMarkingErrorsData = [
+      {
+        error: "Не все коды переданы в УПД / ГИС МТ",
+        reasons: "Часть кодов не попала из учетной системы в документ; сотрудник не отсканировал все коды; сбой обмена; ошибка при формировании файла.",
+        detection: "В учете кодов больше, чем в УПД / ГИС МТ; документ обработан с ошибками; покупатель сообщает, что получил меньше кодов.",
+        correction: "Сверить документ учета, УПД и выгрузку кодов; проверить сканирование; повторно сформировать или отправить документ, если это допустимо."
+      },
+      {
+        error: "Лишние коды переданы в УПД / ГИС МТ",
+        reasons: "В документ попали коды другой партии, склада или подразделения; ошибочно подтянулись ранее отсканированные коды; неверная настройка отбора.",
+        detection: "В УПД / ГИС МТ кодов больше, чем в учете или фактической отгрузке.",
+        correction: "Найти лишние коды по GTIN и документу; проверить источник формирования УПД; исправить документ или оформить корректировку по правилам компании."
+      },
+      {
+        error: "Ошибка в GTIN или номенклатуре",
+        reasons: "В учетной системе указан неверный GTIN; товар заведен дублем; наименование в учете и национальном каталоге отличается; ошиблись при заведении карточки.",
+        detection: "Документ не сопоставляется; в отчете расхождений один товар проходит под разными наименованиями; система возвращает ошибку по товару.",
+        correction: "Проверить карточку номенклатуры, GTIN, штрихкоды упаковок; исправить НСИ; запретить ручной ввод без контроля мастер-данных."
+      },
+      {
+        error: "Ошибка в упаковке или уровне агрегации",
+        reasons: "В справочнике не настроены потребительская упаковка, короб, палета; неверно указан уровень упаковки; изменили упаковку, но не обновили НСИ.",
+        detection: "Количество кодов не совпадает при пересчете упаковок; в документе коды есть, но структура упаковок некорректна.",
+        correction: "Проверить справочник упаковок и уровни агрегации; обновить карточки товара; провести тестовую операцию после исправления."
+      },
+      {
+        error: "Код маркировки не найден",
+        reasons: "Код не был получен или не попал в систему; ошиблись при сканировании; код поврежден; в документ передали некорректное значение.",
+        detection: "В отчете об ошибках ГИС МТ / API появляется сообщение, что код не найден; документ получает статус ошибки.",
+        correction: "Проверить исходный код, сканирование, файл обмена и документ; если код физически поврежден или утрачен, действовать по регламенту перемаркировки, если она применима."
+      },
+      {
+        error: "Статус кода не соответствует операции",
+        reasons: "Пытаются отгрузить, вернуть, списать или перемаркировать код, который находится не в том статусе; предыдущая операция не завершена; код уже выбыл.",
+        detection: "Документ обработан с ошибками; операция не проходит; код числится не в ожидаемом статусе.",
+        correction: "Проверить историю кода и предыдущие документы; завершить или исправить предыдущую операцию; только после этого повторять текущую."
+      },
+      {
+        error: "Документ УПД / УКД обработан с ошибками",
+        reasons: "Некорректные данные по кодам, участникам, GTIN, статусам; ошибки формата; нет нужных сведений для обработки.",
+        detection: "В ГИС МТ документ отражается в статусе «Обработан с ошибками»; по ЭДО документ не проходит дальше по процессу.",
+        correction: "Скачать отчет об ошибках; передать код и описание ошибки ответственному; исправить исходные данные; повторно отправить документ, если это предусмотрено процессом."
+      },
+      {
+        error: "Расхождение при приемке",
+        reasons: "Поставщик передал не те коды; товар пришел не полностью; часть кодов не читается; фактический товар не совпал с УПД.",
+        detection: "Приемка фиксирует недостачу, излишек или ошибки по кодам; бухгалтерия видит расхождение между УПД, складом и учетом.",
+        correction: "Не подписывать документ без урегулирования, если это запрещает внутренний регламент; оформить расхождения; запросить исправление у поставщика; внести корректные данные в учет."
+      },
+      {
+        error: "Расхождение между производственным учетом и УПД на стоимость кодов",
+        reasons: "Коды отнесли на выпуск в одном количестве, а закрывающий документ на стоимость кодов пришел на другое; коды попали в разные периоды; ошибка в ресурсной спецификации; ручные правки при выпуске.",
+        detection: "При закрытии месяца количество кодов по производственному учету не совпадает с количеством в документе; период не закрывается или появляется отклонение.",
+        correction: "Сверить выпуск, ресурсные спецификации, подразделения, период и документ на стоимость кодов; временно классифицировать отклонение по регламенту; устранить причину до следующего закрытия."
+      },
+      {
+        error: "Ошибка в ресурсной спецификации",
+        reasons: "В норму расхода добавили не тот код; спецификация устарела; код не указан в составе материалов или работ; изменения номенклатуры не перенесли в спецификацию.",
+        detection: "При выпуске программа списывает неправильное количество кодов или не списывает их вовсе.",
+        correction: "Обновить ресурсную спецификацию; запретить несанкционированные ручные правки; проверить следующий выпуск на тестовом примере."
+      },
+      {
+        error: "Ошибка при выпуске продукции",
+        reasons: "Мастер или операционист удалил строки по кодам; выпуск отражен не полностью; сканирование прошло не по всем единицам; данные оборудования не попали в ERP.",
+        detection: "Производственный учет показывает другое количество кодов, чем фактически нанесено или чем отражено в документах.",
+        correction: "Сверить сменный отчет, выпуск, данные оборудования и ERP; исправить документ выпуска; провести обучение ответственных сотрудников."
+      },
+      {
+        error: "Брак, повреждение или внутреннее потребление не отражены по кодам",
+        reasons: "Товар передали на переработку, списали или использовали внутри компании, но код не вывели из оборота; нет ответственного за сканирование; склад и бухгалтерия не согласовали процесс.",
+        detection: "Товар физически выбыл, а код продолжает числиться; при инвентаризации коды есть в системе, но товара нет.",
+        correction: "Оформить выбытие по внутреннему регламенту; назначить, кто сканирует коды и кто отправляет сведения; проверить статус кода после операции."
+      },
+      {
+        error: "Возврат отражен некорректно",
+        reasons: "Товар вернулся без читаемого кода; возврат оформили в учете, но не обработали код; не определили, можно ли товар снова продавать.",
+        detection: "Товар есть на складе, но не готов к повторной продаже; код не в нужном статусе; возвратные документы не совпадают с данными по кодам.",
+        correction: "Проверить возвратные документы и статус кода; при необходимости оформить перемаркировку или иную операцию по правилам товарной группы."
+      },
+      {
+        error: "Поврежден или утрачен код маркировки",
+        reasons: "Код стерся, этикетка повреждена, товар вернулся от покупателя без читаемого кода, упаковка повреждена на складе.",
+        detection: "Код невозможно отсканировать при приемке, возврате, отгрузке или инвентаризации.",
+        correction: "Оформить операцию по регламенту; если для товарной группы допустима перемаркировка, выпустить новый код и связать операцию с причиной."
+      },
+      {
+        error: "Ошибка обмена учетной системы с ЭДО / ГИС МТ",
+        reasons: "Не настроен обмен; неверный формат файла; сбой интеграции; обновили систему, но не проверили обмен; нет прав у пользователя.",
+        detection: "Документы зависают, статусы не возвращаются, данные в учете и ЭДО расходятся, появляются технические ошибки API.",
+        correction: "Проверить логи обмена, права пользователей, формат файла, настройки интеграции; повторить отправку после исправления."
+      },
+      {
+        error: "Нет прав или полномочий на операцию",
+        reasons: "Пользователь не имеет нужной роли; организация или контрагент не подключены к нужной операции; неправильно настроены доступы.",
+        detection: "Документ или операция не отправляется; система возвращает ошибку прав / полномочий.",
+        correction: "Проверить регистрацию, договоры, роли пользователей и полномочия; обновить доступы; закрепить администратора ГИС МТ."
+      },
+      {
+        error: "Расхождение остатков по учету, складу и ГИС МТ",
+        reasons: "Не все операции прошли в одной системе; товар перемещали без корректного отражения кодов; списание, возврат или отгрузка зависли.",
+        detection: "Инвентаризация показывает товар без кода или код без товара; остатки по учету не совпадают с данными по кодам.",
+        correction: "Провести сверку по GTIN, документам и операциям; разобрать расхождения по типам: приемка, отгрузка, возврат, списание, перемаркировка."
+      },
+      {
+        error: "Кассовый чек не передал корректные сведения по коду",
+        reasons: "Кассовое ПО не обновлено; код не считался; чек ушел без нужных данных; сбой ОФД или обмена.",
+        detection: "Продажа отражена в выручке, но код не выбыл корректно; появляются расхождения по реализованному товару.",
+        correction: "Проверить чек, ОФД, кассовое ПО, настройки проверки кода; исправить настройки и провести контрольную продажу."
+      },
+      {
+        error: "НСИ не синхронизирована между системами",
+        reasons: "В 1С / ERP, WMS, ЭДО и ГИС МТ разные карточки товара, упаковки, GTIN или наименования.",
+        detection: "В отчетах один товар отображается по-разному; ВПР / сопоставление не находит пары; растут ручные корректировки.",
+        correction: "Назначить владельца мастер-данных; сверить карточки; запретить дубли номенклатуры; использовать GTIN как ключ сопоставления."
+      }
+    ];
+
+    const placeholders = {
+      reasons: "Здесь будут возможные причины ошибки.",
+      detection: "Здесь вы увидите, как выявляют расхождение.",
+      correction: "Здесь мы расскажем, как исправить ошибку."
+    };
+
+    const cards = document.querySelectorAll("[data-fd-error-card]");
+    if (!cards.length) return;
+
+    cards.forEach(function (card) {
+      const select = card.querySelector("[data-fd-error-select]");
+      const reasons = card.querySelector("[data-fd-error-reasons]");
+      const detection = card.querySelector("[data-fd-error-detection]");
+      const correction = card.querySelector("[data-fd-error-correction]");
+
+      if (!select || !reasons || !detection || !correction) return;
+
+      fdMarkingErrorsData.forEach(function (item, index) {
+        const option = document.createElement("option");
+        option.value = String(index);
+        option.textContent = item.error;
+        select.appendChild(option);
+      });
+
+      function setText(node, text, isPlaceholder) {
+        node.textContent = text;
+        node.classList.toggle("is-placeholder", Boolean(isPlaceholder));
+        node.scrollTop = 0;
+      }
+
+      select.addEventListener("change", function () {
+        const selectedIndex = select.value;
+
+        if (selectedIndex === "") {
+          setText(reasons, placeholders.reasons, true);
+          setText(detection, placeholders.detection, true);
+          setText(correction, placeholders.correction, true);
+          return;
+        }
+
+        const item = fdMarkingErrorsData[Number(selectedIndex)];
+        if (!item) return;
+
+        setText(reasons, item.reasons, false);
+        setText(detection, item.detection, false);
+        setText(correction, item.correction, false);
+      });
+    });
+  })();
+</script>
